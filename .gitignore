@@ -1,0 +1,51 @@
+# Ignore credentials and sensitive information
+**/*credentials*
+**/*secret*
+**/*password*
+**/private_keys/*
+**/id_rsa*
+**/api_keys/*
+**/*token*
+
+# Ignore specific applications that may store secrets
+/gnupg/
+/ssh/
+/aws/
+/gcloud/
+/azure/
+/vault/
+
+# Ignore directories that are not needed in the repo
+/cache/
+/tmp/
+/sessions/
+/log/
+/node_modules/
+/kube/
+/Docker/
+/gradle/
+/go/
+/venv/
+/nvm/
+/pip/
+/npm/
+/*.log
+/*.lock
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore system-level directories
+/home/*/.local/share/
+
+configstore/
+github-copilot/
+k3d/
+karabiner/
+wireshark/
+ignore/
+thefuck/
+recovered_blobs/
+jgit/
+
