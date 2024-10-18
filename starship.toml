@@ -7,8 +7,9 @@ $shell\
 $directory\
 [](bg:nord2 fg:nord1)\
 $git_branch\
-$git_status\
 [](bg:nord3 fg:nord2)\
+$git_status\
+[](bg:nord4 fg:nord3)\
 $c\
 $elixir\
 $elm\
@@ -23,8 +24,10 @@ $nodejs\
 $nim\
 $rust\
 $scala\
-[](fg:nord3)
-$status
+[](fg:nord4) \
+$cmd_duration
+$status \
+
 """
 
 scan_timeout = 50
@@ -33,19 +36,20 @@ add_newline = false
 palette = 'nord'
 
 [palettes.nord]
-nord0 = '#2E3440'
-nord1 = '#3B4252'
-nord2 = '#434C5E'
-nord3 = '#4C566A'
-nord4 = '#D8DEE9'
-nord11 = '#BF616A'
-nord13 = '#EBCB8B'
-nord14 = '#A2BE8A'
+nord0 = '#2E3440'  # Darkest
+nord1 = '#3B4252'  # Dark
+nord2 = '#434C5E'  # Medium Dark (git_branch)
+nord3 = '#4C566A'  # Medium Light (git_status)
+nord4 = '#5A6A7F'  # Newly created shade for languages
+nord5 = '#D8DEE9'  # Lighter shade (previously nord4)
+nord11 = '#BF616A'  # Red (for errors)
+nord13 = '#EBCB8B'  # Yellow (for warnings)
+nord14 = '#A2BE8A'  # Green (for success)
 
 # username, host and OS
 [username]
 style_root = 'bg:nord0 fg:nord11'
-style_user = 'bg:nord0 fg:nord4'
+style_user = 'bg:nord0 fg:nord5'
 format = '[$user]($style)'
 show_always = true
 disabled = false
@@ -55,45 +59,41 @@ ssh_only = false
 ssh_symbol = ' '
 trim_at = '.'
 format = '[$hostname$ssh_symbol]($style)'
-style = 'bg:nord0 fg:nord4'
+style = 'bg:nord0 fg:nord5'
 disabled = false
 
 [os]
 format = '[ $symbol ]($style)'
-style = 'bg:nord0 fg:nord4'
+style = 'bg:nord0 fg:nord5'
 disabled = false
 # for symbols look at the end of the file
+
+[cmd_duration]
+format = '[󰥔$duration ]($style)'
+style = 'fg:nord4'
+min_time = 1000
+disabled = false
 
 # directory
 [directory]
 truncation_length = 1
 truncate_to_repo = true
 format = '[ $path ]($style)[$read_only]($read_only_style)'
-style = 'bg:nord1 fg:nord4'
+style = 'bg:nord1 fg:nord5'
 disabled = false
 read_only = ' 󰌾 '
 read_only_style = 'bg:nord1 fg:nord11'
 truncation_symbol = ''
 
-[directory.substitutions]
-'Documents' = '󰈙'
-'Dokumente' = '󰈙'
-'Downloads' = ' '
-'Music' = ' '
-'Musik' = ' '
-'Pictures' = ' '
-'Bilder' = ' '
-'Projects' = ' '
-
 # git
 [git_branch]
 symbol = ''
-style = 'bg:nord2 fg:nord4'
+style = 'bg:nord2 fg:nord5'  # Darker than git_status
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = 'bg:nord2 fg:nord4'
-format = '[$all_status$ahead_behind ]($style)'
+style = 'bg:nord3 fg:nord5'  # Lighter than git_branch
+format = '[ $all_status$ahead_behind]($style)'
 conflicted = '󰭥 $count '
 ahead = ' $ahead_count '
 behind = ' $behind_count '
@@ -107,85 +107,88 @@ renamed = ' $count '
 deleted = ' $count '
 disabled = false
 
+# New lighter background for programming languages
 [git_metrics]
-added_style = 'bg:nord2 fg:nord14'
-deleted_style = 'bg:nord2 fg:nord11'
+added_style = 'bg:nord3 fg:nord14'
+deleted_style = 'bg:nord3 fg:nord11'
 format = '[+$added ]($added_style)[-$deleted ]($deleted_style)'
 disabled = false
 
 # programming
+# Even lighter for languages
 [c]
 symbol = ' '
-style = 'bg:nord3 fg:nord4'
+style = 'bg:nord4 fg:nord5'
 format = '[ $symbol ($version) ]($style)'
 
 [elixir]
 symbol = ' '
-style = 'bg:nord3 fg:nord4'
+style = 'bg:nord4 fg:nord5'
 format = '[ $symbol ($version) ]($style)'
 
 [elm]
 symbol = ' '
-style = 'bg:nord3 fg:nord4'
+style = 'bg:nord4 fg:nord5'
 format = '[ $symbol ($version) ]($style)'
 
 [golang]
 symbol = ''
-style = 'bg:nord3 fg:nord4'
+style = 'bg:nord4 fg:nord5'
 format = '[ $symbol ($version) ]($style)'
 
 [python]
 symbol = ' '
-style = 'bg:nord3 fg:nord4'
+style = 'bg:nord4 fg:nord5'
 format = '[ $symbol ($version) (\($virtualenv\)) ]($style)'
 
 [gradle]
-style = 'bg:nord3 fg:nord4'
+style = 'bg:nord4 fg:nord5'
 format = '[ $symbol ($version) ]($style)'
+disabled = true
 
 [haskell]
 symbol = ' '
-style = 'bg:nord3 fg:nord4'
+style = 'bg:nord4 fg:nord5'
 format = '[ $symbol ($version) ]($style)'
 
 [java]
-symbol = ' '
-style = 'bg:nord3 fg:nord4'
+symbol = ''
+style = 'bg:nord4 fg:nord5'
 format = '[ $symbol ($version) ]($style)'
 
 [kotlin]
 symbol = ' '
-style = 'bg:nord3 fg:nord4'
+style = 'bg:nord4 fg:nord5'
 format = '[ $symbol ($version) ]($style)'
 
 [julia]
 symbol = ' '
-style = 'bg:nord3 fg:nord4'
+style = 'bg:nord4 fg:nord5'
 format = '[ $symbol ($version) ]($style)'
 
 [nodejs]
 symbol = ''
-style = 'bg:nord3 fg:nord4'
+style = 'bg:nord4 fg:nord5'
 format = '[ $symbol ($version) ]($style)'
 
 [nim]
 symbol = '󰆥 '
-style = 'bg:nord3 fg:nord4'
+style = 'bg:nord4 fg:nord5'
 format = '[ $symbol ($version) ]($style)'
 
 [rust]
 symbol = ''
-style = 'bg:nord3 fg:nord4'
+style = 'bg:nord4 fg:nord5'
 format = '[ $symbol ($version) ]($style)'
 
 [scala]
 symbol = ' '
-style = 'bg:nord3 fg:nord4'
+style = 'bg:nord4 fg:nord5'
 format = '[ $symbol ($version) ]($style)'
 
 [shell]
 format = '[$indicator ]($style)'
-style = 'bg:nord0 fg:nord4'
+style = 'bg:nord0 fg:nord5'
 fish_indicator = " "  # This should be the fish symbol
 bash_indicator = " "
 zsh_indicator = " "
