@@ -24,7 +24,6 @@ end
 function sshp
     sshpass -p dragos ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -l dragos $argv
 end
-
 #Aliases
 thefuck  --alias | source
  
