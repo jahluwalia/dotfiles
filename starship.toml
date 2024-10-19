@@ -7,6 +7,7 @@ $shell\
 $directory\
 [](bg:nord2 fg:nord1)\
 $git_branch\
+$git_state\
 [](bg:nord3 fg:nord2)\
 $git_status\
 [](bg:nord4 fg:nord3)\
@@ -87,12 +88,24 @@ truncation_symbol = ''
 [git_branch]
 symbol = ''
 style = 'bg:nord2 fg:nord5'  # Darker than git_status
-format = '[ $symbol $branch ]($style)'
+format = '[ $symbol $branch]($style)'
+merge = '󰏭 bg:nord2 fg:nord11'
+
+# git state
+[git_state]
+format = '[ $state]($style)'  # Show just the Nerd Font icon for the state in Nord red
+cherry_pick = ' '               # Nerd Font icon for cherry-pick
+rebase = ' '                    # Nerd Font icon for rebase
+merge = ' '                     # Nerd Font icon for merge
+revert = ' '                    # Nerd Font icon for revert
+bisect = ' '                    # Nerd Font icon for bisect
+style = 'bg:nord2 fg:nord11'              # All state icons in Nord red
+disabled = false
 
 [git_status]
 style = 'bg:nord3 fg:nord5'  # Lighter than git_branch
 format = '[ $all_status$ahead_behind]($style)'
-conflicted = '󰭥 $count '
+conflicted = '[󰭥 $count ](bg:nord3 fg:nord13)'
 ahead = ' $ahead_count '
 behind = ' $behind_count '
 diverged = ' $ahead_count / $behind_count '
